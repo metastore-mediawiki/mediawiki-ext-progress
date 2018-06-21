@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Extension\MW_EXT_Progress;
+
+use OutputPage, Parser, Skin;
+
 /**
  * Class MW_EXT_Progress
  * ------------------------------------------------------------------------------------------------------------------ */
-
 class MW_EXT_Progress {
 
 	/**
@@ -54,7 +57,7 @@ class MW_EXT_Progress {
 	 * @param Parser $parser
 	 *
 	 * @return bool
-	 * @throws MWException
+	 * @throws \MWException
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
@@ -71,7 +74,7 @@ class MW_EXT_Progress {
 	 * @param string $max
 	 * @param string $width
 	 *
-	 * @return string
+	 * @return null|string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onRenderTag( Parser $parser, $value = '', $max = '', $width = '' ) {
@@ -91,7 +94,7 @@ class MW_EXT_Progress {
 		if ( ! ctype_digit( $getValue ) || ! ctype_digit( $getMax ) || ! ctype_digit( $getWidth ) || $getValue > $getMax ) {
 			$parser->addTrackingCategory( 'mw-ext-progress-error-category' );
 
-			return false;
+			return null;
 		}
 
 		// Set progress status.
@@ -129,7 +132,7 @@ class MW_EXT_Progress {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$out->addModuleStyles( array( 'ext.mw.progress.styles' ) );
+		$out->addModuleStyles( [ 'ext.mw.progress.styles' ] );
 
 		return true;
 	}

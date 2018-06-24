@@ -3,53 +3,12 @@
 namespace MediaWiki\Extension\MW_EXT_Progress;
 
 use OutputPage, Parser, Skin;
+use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Progress
  * ------------------------------------------------------------------------------------------------------------------ */
 class MW_EXT_Progress {
-
-	/**
-	 * Clear DATA (escape html).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function clearData( $string ) {
-		$outString = htmlspecialchars( trim( $string ), ENT_QUOTES );
-
-		return $outString;
-	}
-
-	/**
-	 * Convert DATA (replace space & lower case).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function convertData( $string ) {
-		$outString = mb_strtolower( str_replace( ' ', '-', $string ), 'UTF-8' );
-
-		return $outString;
-	}
-
-	/**
-	 * Get MediaWiki progress.
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getMsgText( $string ) {
-		$outString = wfMessage( 'mw-ext-progress-' . $string )->inContentLanguage()->text();
-
-		return $outString;
-	}
 
 	/**
 	 * Register tag function.
@@ -79,15 +38,15 @@ class MW_EXT_Progress {
 
 	public static function onRenderTag( Parser $parser, $value = '', $max = '', $width = '' ) {
 		// Argument: value.
-		$getValue = self::clearData( $value ?? '' ?: '' );
+		$getValue = MW_EXT_Core::outClear( $value ?? '' ?: '' );
 		$outValue = $getValue;
 
 		// Argument: max.
-		$getMax = self::clearData( $max ?? '' ?: '' );
+		$getMax = MW_EXT_Core::outClear( $max ?? '' ?: '' );
 		$outMax = $getMax;
 
 		// Argument: width.
-		$getWidth = self::clearData( $width ?? '' ?: '50' );
+		$getWidth = MW_EXT_Core::outClear( $width ?? '' ?: '50' );
 		$outWidth = $getWidth;
 
 		// Check progress value, set error category.
@@ -113,8 +72,7 @@ class MW_EXT_Progress {
 		$outHTML .= '<div class="mw-ext-progress-count mw-ext-progress-count-status-' . $outStatus . '">' . $outValue . '%</div>';
 		$outHTML .= '<div class="mw-ext-progress-content">';
 		$outHTML .= '<progress class="mw-ext-progress-bar mw-ext-progress-bar-status-' . $outStatus . '" value="' . $outValue . '" max="' . $outMax . '"></progress>';
-		$outHTML .= '</div>';
-		$outHTML .= '</div></div>';
+		$outHTML .= '</div></div></div>';
 
 		// Out parser.
 		$outParser = $parser->insertStripItem( $outHTML, $parser->mStripState );

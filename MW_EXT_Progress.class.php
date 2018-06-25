@@ -68,7 +68,7 @@ class MW_EXT_Progress {
 		}
 
 		// Out HTML.
-		$outHTML = '<div style="width: ' . $outWidth . '%;" class="mw-ext-progress"><div class="mw-ext-progress-body">';
+		$outHTML = '<div style="width: ' . $outWidth . '%;" class="mw-ext-progress navigation-not-searchable"><div class="mw-ext-progress-body">';
 		$outHTML .= '<div class="mw-ext-progress-count mw-ext-progress-count-status-' . $outStatus . '">' . $outValue . '%</div>';
 		$outHTML .= '<div class="mw-ext-progress-content">';
 		$outHTML .= '<progress class="mw-ext-progress-bar mw-ext-progress-bar-status-' . $outStatus . '" value="' . $outValue . '" max="' . $outMax . '"></progress>';

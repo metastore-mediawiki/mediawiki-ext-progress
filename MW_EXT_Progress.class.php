@@ -20,7 +20,7 @@ class MW_EXT_Progress {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setFunctionHook( 'progress', __CLASS__ . '::onRenderTag' );
+		$parser->setFunctionHook( 'progress', [ __CLASS__, 'onRenderTag' ] );
 
 		return true;
 	}

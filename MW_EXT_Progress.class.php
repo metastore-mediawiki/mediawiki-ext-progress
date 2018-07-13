@@ -7,7 +7,7 @@ use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Progress
- * ------------------------------------------------------------------------------------------------------------------ */
+ */
 class MW_EXT_Progress {
 
 	/**
@@ -17,8 +17,7 @@ class MW_EXT_Progress {
 	 *
 	 * @return bool
 	 * @throws \MWException
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setFunctionHook( 'progress', [ __CLASS__, 'onRenderTag' ] );
 
@@ -34,8 +33,7 @@ class MW_EXT_Progress {
 	 * @param string $width
 	 *
 	 * @return null|string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onRenderTag( Parser $parser, $value = '', $max = '', $width = '' ) {
 		// Argument: value.
 		$getValue = MW_EXT_Core::outClear( $value ?? '' ?: '' );
@@ -87,8 +85,7 @@ class MW_EXT_Progress {
 	 * @param Skin $skin
 	 *
 	 * @return bool
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->addModuleStyles( [ 'ext.mw.progress.styles' ] );
 

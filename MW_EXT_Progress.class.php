@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MW_EXT_Progress;
 
 use OutputPage, Parser, Skin;
-use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
+use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_Progress
@@ -36,15 +36,15 @@ class MW_EXT_Progress {
 	 */
 	public static function onRenderTag( Parser $parser, $value = '', $max = '', $width = '' ) {
 		// Argument: value.
-		$getValue = MW_EXT_Core::outClear( $value ?? '' ?: '' );
+		$getValue = MW_EXT_Kernel::outClear( $value ?? '' ?: '' );
 		$outValue = $getValue;
 
 		// Argument: max.
-		$getMax = MW_EXT_Core::outClear( $max ?? '' ?: '' );
+		$getMax = MW_EXT_Kernel::outClear( $max ?? '' ?: '' );
 		$outMax = $getMax;
 
 		// Argument: width.
-		$getWidth = MW_EXT_Core::outClear( $width ?? '' ?: '50' );
+		$getWidth = MW_EXT_Kernel::outClear( $width ?? '' ?: '50' );
 		$outWidth = $getWidth;
 
 		// Check progress value, set error category.

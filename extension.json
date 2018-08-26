@@ -17,14 +17,14 @@
 		}
 	},
 	"AutoloadClasses": {
-		"MediaWiki\\Extension\\METADATA\\MW_EXT_Progress": "MW_EXT_Progress.class.php"
+		"MediaWiki\\Extension\\MetaStore\\MW_EXT_Progress": "MW_EXT_Progress.class.php"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"MediaWiki\\Extension\\METADATA\\MW_EXT_Progress::onParserFirstCallInit"
+			"MediaWiki\\Extension\\MetaStore\\MW_EXT_Progress::onParserFirstCallInit"
 		],
 		"BeforePageDisplay": [
-			"MediaWiki\\Extension\\METADATA\\MW_EXT_Progress::onBeforePageDisplay"
+			"MediaWiki\\Extension\\MetaStore\\MW_EXT_Progress::onBeforePageDisplay"
 		]
 	},
 	"ExtensionMessagesFiles": {
